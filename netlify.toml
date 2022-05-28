@@ -1,6 +1,5 @@
 [build]
   command = "npm i && cd api && npm i && cd .. && npm run build && cp api/build/graphql-schema.js api/build/functions/graphql/. && cp api/build/schema.graphql api/build/functions/graphql/.  && cd api/src/functions/graphql && npm i"
-  publish = "build"
   functions = "api/build/functions"
 
 [dev]
