@@ -1,0 +1,53 @@
+scalar Long
+
+type Category {
+   _id: Long!
+   id: Int!
+   name: String!
+   has_restaurant: [Restaurant] @relationship(type: "HAS_RESTAURANT", direction: OUT)
+}
+
+type Location {
+   _id: Long!
+   address: String!
+   address_extended: String
+   census_block: String!
+   country: String!
+   cross_street: String!
+   dma: String!
+   formatted_address: String!
+   locality: String!
+   neighborhood: [String]!
+   postcode: String!
+   region: String!
+   restaurants: [Restaurant] @relationship(type: "LOCATED_AT", direction: IN)
+}
+
+type SpatialLayer {
+   _id: Long!
+   ctime: Int!
+   geomencoder: String!
+   geomencoder_config: String!
+   index_class: String!
+   layer: String!
+   layer_class: String!
+}
+
+type Restaurant {
+   _id: Long!
+   bbox: [Float]!
+   gtype: Int!
+   id: String!
+   lat: Float!
+   long: Float!
+   name: String!
+   located_at: [Location] @relationship(type: "LOCATED_AT", direction: OUT)
+   categorys: [Category] @relationship(type: "HAS_RESTAURANT", direction: IN)
+}
+
+
+
+
+
+
+
