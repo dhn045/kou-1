@@ -33,6 +33,53 @@ type SpatialLayer {
    layer_class: String!
 }
 
+type Form {
+   _id: Long!
+   name: String!
+   mutationName: String
+   mutationType: String
+   has_form_page: [FormPage] @relationship(type: "HAS_FORM_PAGE", direction: OUT)
+}
+
+type FormElement {
+   _id: Long!
+   buttonAction: String
+   buttonLabel: String
+   displayOrder: Int!
+   items: [String]
+   limit: Int
+   key: String
+   text: String
+   textFieldLabel: String
+   textFieldPatterns: [String]
+   textFieldLabelDirection: String
+   type: String!
+   formpages: [FormPage] @relationship(type: "HAS_FORM_ELEMENT", direction: IN)
+}
+
+type Profile {
+   _id: Long!
+   _id: String
+   email: String!
+   password: String!
+   name: String
+   city: String
+   birthdate: String
+   restaurant1: String
+   restaurant2: String
+   restaurant3: String
+   importantFactors: [String]
+   preferredTravelMethod: String
+   preferredTravelDuration: Int
+}
+
+type FormPage {
+   _id: Long!
+   pageOrder: Int!
+   has_form_element: [FormElement] @relationship(type: "HAS_FORM_ELEMENT", direction: OUT)
+   forms: [Form] @relationship(type: "HAS_FORM_PAGE", direction: IN)
+}
+
 type Restaurant {
    _id: Long!
    bbox: [Float]!
@@ -44,6 +91,8 @@ type Restaurant {
    located_at: [Location] @relationship(type: "LOCATED_AT", direction: OUT)
    categorys: [Category] @relationship(type: "HAS_RESTAURANT", direction: IN)
 }
+
+
 
 
 
